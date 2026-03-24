@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package onlineshoppingcart;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObejctOutputStream;
+import java.util.ArrayList;
 
 /**
  *
@@ -11,12 +15,20 @@ package onlineshoppingcart;
 public class GUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI.class.getName());
+    private ArrayList<ShoppingItems> sList;
+    private String item;
+    private int quantity;
+    private double price;
 
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        sList = new ArrayList<>();
+        item = new String;
+        quantity = 0;
+        price = 0.0;
     }
 
     /**
@@ -157,11 +169,30 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addBtnActionPerformed
+        //Author: Richard Badea
+
+        //get text from textfields
+        item = itemTf.getText();
+        quantity = Integer.parseInt(quantityTf.getText());
+        price = Double.parseDouble(priceTf.getText());
+
+        //create object
+        ShoppingItems i = new ShoppingItems(items, quantity, price);
+        
+        //add object to arraylist
+        sList.add(i);
+
+        try(ObjectOutputStream oStream = new ObjectOutputStream("items.dat")) {
+            oStream.writeObject(sList);
+
+            outputTa.append("Item added successfully\n");
+        } catch(IOException e) {
+            outputTa.append("Error: " + e.getMessage());
+        }
+    }
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        // TODO add your handling code here:
+        //Author: Rostyslav Kuznets
          String itemToRemove = javax.swing.JOptionPane.showInputDialog(this, "Enter item to remove:");
 
     if (itemToRemove == null || itemToRemove.trim().isEmpty()) {
