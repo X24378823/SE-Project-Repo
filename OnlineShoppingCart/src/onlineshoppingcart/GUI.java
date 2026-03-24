@@ -162,6 +162,20 @@ public class GUI extends javax.swing.JFrame {
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         // TODO add your handling code here:
+         String itemToRemove = javax.swing.JOptionPane.showInputDialog(this, "Enter item to remove:");
+
+    if (itemToRemove == null || itemToRemove.trim().isEmpty()) {
+        outputTa.setText("No item entered.");
+        return;
+    }
+
+    boolean removed = cart.remove(itemToRemove.trim());
+
+    if (removed) {
+        outputTa.setText(itemToRemove + " removed from cart.");
+    } else {
+        outputTa.setText(itemToRemove + " not found in cart.");
+    }
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void displayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBtnActionPerformed
