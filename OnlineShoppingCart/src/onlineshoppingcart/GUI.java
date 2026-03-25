@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -204,7 +205,6 @@ public class GUI extends javax.swing.JFrame {
         //add object to arraylist
         sList.add(i);
 
-        //create and add arraylist to the file
         try (ObjectOutputStream oStream = new ObjectOutputStream(new FileOutputStream("items.dat"))) {
             oStream.writeObject(sList);
 
@@ -218,15 +218,23 @@ public class GUI extends javax.swing.JFrame {
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         //Author: Rostyslav Kuznets
-        String itemToRemove = javax.swing.JOptionPane.showInputDialog(this, "Enter item to remove:");
-
+          String itemToRemove = JOptionPane.showInputDialog(this, "Enter item to remove:");
+ 
         if (itemToRemove == null || itemToRemove.trim().isEmpty()) {
             outputTa.setText("No item entered.");
             return;
         }
-
-        boolean removed = cart.remove(itemToRemove.trim());
-
+ 
+        boolean removed = false;
+ 
+        for (int i = 0; i < sList.size(); i++) {
+            if (sList.get(i).getItem().equalsIgnoreCase(itemToRemove.trim())) {
+                sList.remove(i);
+                removed = true;
+                break;
+            }
+        }
+ 
         if (removed) {
             outputTa.setText(itemToRemove + " removed from cart.");
         } else {
