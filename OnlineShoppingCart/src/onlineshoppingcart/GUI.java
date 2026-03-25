@@ -182,7 +182,7 @@ public class GUI extends javax.swing.JFrame {
         //add object to arraylist
         sList.add(i);
 
-        try(ObjectOutputStream oStream = new ObjectOutputStream("items.dat")) {
+        try(ObjectOutputStream oStream = new ObjectOutputStream(new FileOutputStream("items.dat"))) {
             oStream.writeObject(sList);
 
             outputTa.append("Item added successfully\n");
