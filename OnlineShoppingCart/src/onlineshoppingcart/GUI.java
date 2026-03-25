@@ -177,7 +177,7 @@ public class GUI extends javax.swing.JFrame {
         price = Double.parseDouble(priceTf.getText());
 
         //create object
-        ShoppingItems i = new ShoppingItems(items, quantity, price);
+        ShoppingItems i = new ShoppingItems(item, quantity, price);
         
         //add object to arraylist
         sList.add(i);
