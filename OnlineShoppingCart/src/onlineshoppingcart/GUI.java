@@ -253,6 +253,41 @@ public class GUI extends javax.swing.JFrame {
 
     private void checkoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutBtnActionPerformed
         // TODO add your handling code here:
+        // Author: Kevin Alabi                                          
+        // Check if cart is empty
+    if (sList.isEmpty()) {
+        outputTa.setText("Your cart is empty. Add items before checkout.");
+        return;
+    }
+
+    double total = 0;
+
+    // Calculate total price
+    for (ShoppingItems cartItem : sList) {
+        total += cartItem.getPrice() * cartItem.getQuantity();
+    }
+
+    // Display summary
+    outputTa.setText("Checkout Summary \n");
+    for (ShoppingItems cartItem : sList) {
+        outputTa.append(cartItem.getItem() + "  Qty: " + cartItem.getQuantity() + "  Price: €" + cartItem.getPrice() + "\n");
+    }
+    outputTa.append("\nTotal: €" + total);
+
+    // Confirm purchase
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(
+        this,
+        "Confirm purchase of €" + total + "?",
+        "Checkout",
+        javax.swing.JOptionPane.YES_NO_OPTION
+    );
+
+    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+        outputTa.append("\n\nPurchase successful!");
+        sList.clear();
+    } else {
+        outputTa.append("\n\nPurchase cancelled.");
+    }
     }//GEN-LAST:event_checkoutBtnActionPerformed
 
     private void itemTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTfActionPerformed
