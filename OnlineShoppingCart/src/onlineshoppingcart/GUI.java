@@ -5,7 +5,7 @@
 package onlineshoppingcart;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObejctOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author RichardBadea
  */
 public class GUI extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI.class.getName());
     private ArrayList<ShoppingItems> sList;
     private String item;
@@ -29,6 +29,7 @@ public class GUI extends javax.swing.JFrame {
         item = new String();
         quantity = 0;
         price = 0.0;
+
     }
 
     /**
@@ -49,7 +50,11 @@ public class GUI extends javax.swing.JFrame {
         checkoutBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         itemTf = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        itemLbl = new javax.swing.JLabel();
+        quantityLbl = new javax.swing.JLabel();
+        quantityTf = new javax.swing.JTextField();
+        priceLbl = new javax.swing.JLabel();
+        priceTf = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +93,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        exitBtn.setBackground(new java.awt.Color(204, 0, 0));
+        exitBtn.setForeground(new java.awt.Color(255, 255, 255));
         exitBtn.setText("exit");
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,68 +108,83 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("items:");
+        itemLbl.setText("items:");
+
+        quantityLbl.setText("Quantity:");
+
+        priceLbl.setText("Price:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
-                                .addComponent(titleLbl))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exitBtn)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(itemLbl)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(priceLbl)
+                            .addComponent(quantityLbl))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(quantityTf, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(itemTf)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(priceTf, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(addBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                                .addComponent(removeBtn)
-                                .addGap(57, 57, 57)
-                                .addComponent(displayBtn)))
-                        .addGap(24, 24, 24))))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(exitBtn)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(displayBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(16, 16, 16))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(checkoutBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(titleLbl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(checkoutBtn)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(exitBtn)
-                .addGap(1, 1, 1)
+                .addGap(19, 19, 19)
                 .addComponent(titleLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGap(32, 32, 32)
+                .addComponent(itemLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(itemTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
+                .addComponent(quantityLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(quantityTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(priceLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(priceTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
-                    .addComponent(displayBtn)
-                    .addComponent(removeBtn))
-                .addGap(34, 34, 34)
+                    .addComponent(removeBtn)
+                    .addComponent(displayBtn))
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(checkoutBtn)
-                .addGap(21, 21, 21))
+                .addGap(4, 4, 4)
+                .addComponent(exitBtn)
+                .addContainerGap())
         );
 
         pack();
@@ -178,35 +200,37 @@ public class GUI extends javax.swing.JFrame {
 
         //create object
         ShoppingItems i = new ShoppingItems(item, quantity, price);
-        
+
         //add object to arraylist
         sList.add(i);
 
-        try(ObjectOutputStream oStream = new ObjectOutputStream(new FileOutputStream("items.dat"))) {
+        try (ObjectOutputStream oStream = new ObjectOutputStream(new FileOutputStream("items.dat"))) {
             oStream.writeObject(sList);
 
             outputTa.append("Item added successfully\n");
-        } catch(IOException e) {
+        } catch (IOException e) {
             outputTa.append("Error: " + e.getMessage());
         }
-    }
+
+
+    }//GEN-LAST:event_addBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         //Author: Rostyslav Kuznets
-         String itemToRemove = javax.swing.JOptionPane.showInputDialog(this, "Enter item to remove:");
+        String itemToRemove = javax.swing.JOptionPane.showInputDialog(this, "Enter item to remove:");
 
-    if (itemToRemove == null || itemToRemove.trim().isEmpty()) {
-        outputTa.setText("No item entered.");
-        return;
-    }
+        if (itemToRemove == null || itemToRemove.trim().isEmpty()) {
+            outputTa.setText("No item entered.");
+            return;
+        }
 
-    boolean removed = cart.remove(itemToRemove.trim());
+        boolean removed = cart.remove(itemToRemove.trim());
 
-    if (removed) {
-        outputTa.setText(itemToRemove + " removed from cart.");
-    } else {
-        outputTa.setText(itemToRemove + " not found in cart.");
-    }
+        if (removed) {
+            outputTa.setText(itemToRemove + " removed from cart.");
+        } else {
+            outputTa.setText(itemToRemove + " not found in cart.");
+        }
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void displayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBtnActionPerformed
@@ -256,10 +280,14 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton checkoutBtn;
     private javax.swing.JButton displayBtn;
     private javax.swing.JButton exitBtn;
+    private javax.swing.JLabel itemLbl;
     private javax.swing.JTextField itemTf;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea outputTa;
+    private javax.swing.JLabel priceLbl;
+    private javax.swing.JTextField priceTf;
+    private javax.swing.JLabel quantityLbl;
+    private javax.swing.JTextField quantityTf;
     private javax.swing.JButton removeBtn;
     private javax.swing.JLabel titleLbl;
     // End of variables declaration//GEN-END:variables
