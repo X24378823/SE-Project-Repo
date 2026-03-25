@@ -16,10 +16,10 @@ class ShoppingItems implements Serializable {
     private int quantity;
     private double price;
     
-    public ShoppingItems(String item, int qauntity, double price) {
-        this.item= item;
-        this.quantity = quantity;
-        this.price = price;
+    public ShoppingItems(String item, int quantity, double price) {
+    this.item = item;
+    this.quantity = quantity;
+    this.price = price;
     }
 
     public String getItem() {
