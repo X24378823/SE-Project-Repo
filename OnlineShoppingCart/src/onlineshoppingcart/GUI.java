@@ -26,7 +26,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
         sList = new ArrayList<>();
-        item = new String;
+        item = new String();
         quantity = 0;
         price = 0.0;
     }
