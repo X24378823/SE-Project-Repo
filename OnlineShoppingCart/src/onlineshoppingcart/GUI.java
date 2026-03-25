@@ -204,6 +204,7 @@ public class GUI extends javax.swing.JFrame {
         //add object to arraylist
         sList.add(i);
 
+        //create and add arraylist to the file
         try (ObjectOutputStream oStream = new ObjectOutputStream(new FileOutputStream("items.dat"))) {
             oStream.writeObject(sList);
 
