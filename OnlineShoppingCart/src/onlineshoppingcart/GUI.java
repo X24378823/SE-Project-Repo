@@ -243,7 +243,30 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void displayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBtnActionPerformed
-        // TODO add your handling code here:
+         // Author: King Diamond Ebs
+        if (sList.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Your cart is empty");
+        return;
+    }
+
+    StringBuilder message = new StringBuilder("Items in your cart:\n\n");
+
+    double total = 0;
+
+    for (ShoppingItems item : sList) {
+        double itemTotal = item.getQuantity() * item.getPrice();
+        total += itemTotal;
+
+        message.append(item.getItem())
+               .append(" | Amount: ").append(item.getQuantity())
+               .append(" | Total: €").append(itemTotal)
+               .append("\n");
+    }
+
+    message.append("\n-------------------\n");
+    message.append("Total Price: €").append(total);
+
+    JOptionPane.showMessageDialog(this, message.toString());
     }//GEN-LAST:event_displayBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
