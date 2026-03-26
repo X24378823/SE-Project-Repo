@@ -252,7 +252,6 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void checkoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutBtnActionPerformed
-        // TODO add your handling code here:
         // Author: Kevin Alabi                                          
         // Check if cart is empty
     if (sList.isEmpty()) {
